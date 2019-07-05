@@ -75,6 +75,7 @@ class COCO:
         self.imgToAnns, self.catToImgs = defaultdict(list), defaultdict(list)
         if not annotation_file == None:
             print('loading annotations into memory...')
+            print ("annotation file",annotation_file )
             tic = time.time()
             dataset = json.load(open(annotation_file, 'r'))
             assert type(dataset)==dict, 'annotation file format {} not supported'.format(type(dataset))
@@ -85,16 +86,18 @@ class COCO:
     def createIndex(self):
         # create index
         print('creating index...')
-        anns, cats, imgs = {}, {}, {}
+        anns, cats, imgs, file_names = {}, {}, {}, {}
         imgToAnns,catToImgs = defaultdict(list),defaultdict(list)
         if 'annotations' in self.dataset:
             for ann in self.dataset['annotations']:
+                print (ann)
                 imgToAnns[ann['image_id']].append(ann)
                 anns[ann['id']] = ann
 
         if 'images' in self.dataset:
             for img in self.dataset['images']:
                 imgs[img['id']] = img
+                
 
         if 'categories' in self.dataset:
             for cat in self.dataset['categories']:

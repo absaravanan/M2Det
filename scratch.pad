@@ -1,0 +1,3 @@
+CUDA_VISIBLE_DEVICES=0 python3 train.py -c=configs/m2det512_vgg.py --ngpu 1 -t True
+
+python3 demo.py -c=configs/m2det512_vgg.py -m=/media/saravanan/aace6202-85e5-4d83-8359-469fe554fc87/universe/github/M2Det/weights/M2Det_COCO_size512_netvgg16_epoch0.pth --show

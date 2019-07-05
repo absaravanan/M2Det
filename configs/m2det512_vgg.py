@@ -12,7 +12,7 @@ model = dict(
         num_scales = 6,
         sfam = False,
         smooth = True,
-        num_classes = 81,
+        num_classes = 2,
         ),
     rgb_means = (104, 117, 123),
     p = 0.6,
@@ -27,7 +27,7 @@ model = dict(
 train_cfg = dict(
     cuda = True,
     warmup = 5,
-    per_batch_size = 16,
+    per_batch_size = 1,
     lr = [0.004, 0.002, 0.0004, 0.00004, 0.000004],
     gamma = 0.1,
     end_lr = 1e-6,
@@ -35,8 +35,8 @@ train_cfg = dict(
         COCO = [90, 110, 130, 150, 160],
         VOC = [100, 150, 200, 250, 300], # unsolve
         ),
-    print_epochs = 10,
-    num_workers= 8,
+    print_epochs = 1,
+    num_workers= 1,
     )
 
 test_cfg = dict(

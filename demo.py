@@ -98,7 +98,7 @@ if cam >= 0 or video:
     video_name = os.path.splitext(video_path)
     fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
     out_video = cv2.VideoWriter(video_name[0] + '_m2det.mp4', fourcc, capture.get(cv2.CAP_PROP_FPS), (int(capture.get(cv2.CAP_PROP_FRAME_WIDTH)), int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT))))
-im_fnames = sorted((fname for fname in os.listdir(im_path) if os.path.splitext(fname)[-1] == '.jpg'))
+im_fnames = sorted((fname for fname in os.listdir(im_path) if os.path.splitext(fname)[-1] == '.png'))
 im_fnames = (os.path.join(im_path, fname) for fname in im_fnames)
 im_iter = iter(im_fnames)
 while True:
@@ -109,6 +109,9 @@ while True:
             break
         if 'm2det' in fname: continue # ignore the detected images
         image = cv2.imread(fname, cv2.IMREAD_COLOR)
+        import imutils
+        image = imutils.resize(image, width=300)
+        print ("image read")
     else:
         ret, image = capture.read()
         if not ret:
